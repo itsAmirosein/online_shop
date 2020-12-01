@@ -1,7 +1,6 @@
-import React from 'react'
 import { PRODUCTS } from './productsData'
 export default function Reducer(state, action) {
-  
+
 
     return ACTION[action.type](state, action.payload)
 }
@@ -16,6 +15,7 @@ const ACTION = {
     "ADD_TO_BASKET": handelAddValue,
     "CHANGE_COUNTER": handelChangeCounter,
     "REMOVE_FROM_BASKET": handelRemoveValue,
+    "TOGGLE_CATEGORIES": handelToggleCategoris,
 
 
 
@@ -118,7 +118,7 @@ function handelAddValue(state, payload) {
     }
 }
 function handelChangeCounter(state, payload) {
-    const {currentShop} = state
+    const { currentShop } = state
     const { changeValue, itemId } = payload
     const copyCurrentShop = [...currentShop]
     const item = { ...currentShop.find(item => item.id === itemId) }
@@ -135,10 +135,10 @@ function handelChangeCounter(state, payload) {
 
 
     }
-    else if(changeValue==="remove"&&item.counter<=1){
-        return{
+    else if (changeValue === "remove" && item.counter <= 1) {
+        return {
             ...state,
-           
+
         }
     }
     else if (changeValue === 'add') {
@@ -155,14 +155,19 @@ function handelChangeCounter(state, payload) {
 
 }
 
-function handelRemoveValue(state,payload){
-    const {currentShop} = state
+function handelRemoveValue(state, payload) {
+    const { currentShop } = state
     let copyCurrentShop = [...currentShop]
-            copyCurrentShop = copyCurrentShop.filter(item => item.id !==payload)
-            return {
-                ...state,
-                currentShop: copyCurrentShop
-            }
+    copyCurrentShop = copyCurrentShop.filter(item => item.id !== payload)
+    return {
+        ...state,
+        currentShop: copyCurrentShop
+    }
 }
 
-
+function handelToggleCategoris(state, payload) {
+    return {
+        ...state,
+        toggleCat: !state.toggleCat
+    }
+}

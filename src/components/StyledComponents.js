@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const HeaderWrapper = styled.div`
   width: 100vw;
@@ -344,11 +344,23 @@ export const DiscountPrice = styled.span`
 
 export const SeeMore = styled.span`
   position: absolute;
+  background-color:#EFF2EF;
+  padding:5px;
+  border-radius:8px;
   right: 40px;
-  top: -15px;
+  top: -80px;
   font-size: 1.3rem;
   cursor: pointer;
   text-decoration: none;
+  transition:all 0.2s ease;
+  &:hover{
+    background-color:#D4D6D4;
+
+  }
+  &:active{
+background-color:#ACAEAC;
+  }
+
 `;
 
 export const ShopWrapper = styled.div`
@@ -388,7 +400,7 @@ export const Filters = styled.div`
   padding: 10px;
   justify-content: flex-start;
   align-items: flex-start;
-  border: 1px solid #ccc;
+  border: 1px solid #8B8C8B;
   flex-direction: column;
   > span {
     width: 100%;
@@ -399,7 +411,7 @@ export const Filters = styled.div`
     }
   }
   > span:not(:last-child) {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #8B8C8B;
   }
   > span:first-child,
   > span:last-child {
@@ -409,13 +421,15 @@ export const Filters = styled.div`
   }
   > span:nth-child(3) {
     padding: 10px 0 0 0;
-    border-bottom: none;
+    border-bottom: 2px solid #8B8C8B ;
+    display:flex;
+    justify-content:space-between;
   }
   > ul:nth-child(4) {
     list-style: none;
     width: 80%;
     padding: 0 20px 10px 20px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #8B8C8B;
     li {
       cursor: pointer;
     }
@@ -429,7 +443,7 @@ export const Filters = styled.div`
     > div {
       > input {
         outline: none;
-        border: 1px solid #ccc;
+        border: 1px solid #8B8C8B;
         width: 60px;
         height: 25px;
         margin: 5px;
@@ -446,3 +460,58 @@ export const Filters = styled.div`
   }
 `;
 
+const riseIn = keyframes`
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+`
+
+const riseOut = keyframes`
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+`
+
+
+export const Icon = styled.span`
+animation:${props => props.isoppened ? riseIn : riseOut} 0.27s ease;
+animation-fill-mode:forwards;
+`
+
+export const Menu = styled.div`
+border-bottom:1px solid #C1C3C1;
+width:100%;
+cursor: pointer;
+padding:5px;
+`
+
+
+
+export const MenuContainer = styled.div`
+transition:all 0.5s ease;
+height:${props => props.isoppened ? '500px' : '0px'};
+overflow:hidden;
+width:100%;
+`
+
+export const ClearFilters = styled.span`
+
+padding: 12px;
+border-radius:50%;
+display:flex;
+align-content:center;
+justify-content:center;
+transition: all 0.2s ease;
+&:hover{
+  background-color:#EBEEEB
+}
+&:active{
+  background-color:#BEC1BF;
+}
+`

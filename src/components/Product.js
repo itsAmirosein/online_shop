@@ -8,7 +8,7 @@ function Product({ img, onClick,title, cat,price }) {
       <CartButton onClick={(e) => onClick(e)}>Add to Cart</CartButton>
       <span>title: {title}</span>
       <span>category: {cat}</span>
-      <span>price: {price}</span>
+      <span>price: {price} $</span>
     </ProductWrapper>
   );
 }

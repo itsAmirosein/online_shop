@@ -1,6 +1,5 @@
 import React from "react";
 import Product from "./Product";
-import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 import {
   BgWrapper,
@@ -29,12 +28,17 @@ function Home({ onClick, products }) {
       <ProductTitle>Best Sellers - 50% discount</ProductTitle>
 
       <ProductContainer>
-        <SeeMore>See all</SeeMore>
+        <Link to={"./shop"}>
+        <SeeMore>see all</SeeMore>
+        </Link>
         {bestSellers.splice(0, 8).map((product) => {
           return (
             <Link key={product.id} to={`/detail/${product.id}`}>
               <Product
                 img={product.imageUrl}
+                title={product.title}
+                cat={product.cat}
+                price={parseInt(product.price)}
                 onClick={(e) => onClick(e, product.id)}
               />
             </Link>

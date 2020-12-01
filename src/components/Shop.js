@@ -1,16 +1,27 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
-import { Filters, ShopWrapper, Wrapper } from "./StyledComponents";
+import {
+  Filters,
+  ShopWrapper,
+  Wrapper,
+  Icon,
+  Menu,
+  MenuContainer,
+  ClearFilters
+} from "./StyledComponents";
 import Product from './Product'
-import Reducer from './reducer'
 import { ShopState } from './context'
+import * as gr from "react-icons/gr";
+
+
+
 function Shop({ products }) {
 
   const { state, dispatch, shopping } = useContext(ShopState)
-  const { currentProduct, value } = state
+  const { toggleCat, currentProduct, value } = state
 
- 
+
   const Cats = _.uniq(products.map((product) => product.category));
 
   useEffect(() => {
@@ -67,23 +78,32 @@ function Shop({ products }) {
       payload: cat
     })
   };
+
+  function handelShowCategories() {
+    dispatch({
+      type: "TOGGLE_CATEGORIES"
+    })
+  }
+
   return (
     <Wrapper>
       <Filters>
         <span>
-          Filters <button onClick={handleRemoveFilters}>Remove All</button>
+          Filters    <ClearFilters onClick={handleRemoveFilters}><gr.GrTrash /></ClearFilters>
         </span>
         <span onClick={handleBestSellers}>Best Sellers</span>
-        <span>Categories</span>
-        <ul>
+        <span onClick={handelShowCategories}>Categories <Icon isoppened={toggleCat}> <gr.GrDown /></Icon></span>
+
+        <MenuContainer isoppened={toggleCat}>
           {Cats.map((cat, v) => {
             return (
-              <li onClick={() => handleFilterCat(cat)} key={v}>
+              <Menu onClick={() => handleFilterCat(cat)} key={v}>
                 {cat}
-              </li>
+              </Menu>
             );
           })}
-        </ul>
+        </MenuContainer>
+
         <span>
           <span>Price</span>
           <div>
