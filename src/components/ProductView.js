@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   ProductViewWrapper,
   InfoWrapper,
@@ -9,12 +9,10 @@ import {
 } from "./StyledComponents";
 import * as fa from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { ShopState } from "./context";
 
 function ProductView({ title, price, img, count, special, id, closeSidebar, hadelCounter,handelRemove }) {
   const discountPrice = Math.floor(price / 2);
-  const {state} = useContext(ShopState)
-  const {disabled} = state
+
 
   return (
     <ProductViewWrapper>

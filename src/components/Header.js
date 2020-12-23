@@ -14,7 +14,7 @@ function Header({ productView, hadelCounter, handelRemove }) {
   return (
     <HeaderWrapper>
       <fa.FaBars />
-      <Link to="/"><img src={"./logo.svg"} /></Link>
+      <Link to="/"><img src={"./logo.svg"} alt=''/></Link>
       <ShoppingBtn>
         <fa.FaShoppingCart onClick={() => setShowSidebar(true)} />
         {productView.length !== 0 && <ShoppingSpan>{productView.length}</ShoppingSpan>}
