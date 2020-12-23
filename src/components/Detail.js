@@ -20,7 +20,6 @@ function Detail({ products, onClick }) {
       relatedProduct.category === product.category &&
       relatedProduct.id !== product.id
   );
-
   return (
     <>
       <DetailProduct>
@@ -49,6 +48,9 @@ function Detail({ products, onClick }) {
           return (
             <Link key={item.id} to={`/detail/${item.id}`}>
               <Product
+              title={item.title}
+              cat={item.category}
+              price={item.price}
                 img={item.imageUrl}
                 onClick={(e) => onClick(e, item.id)}
               />

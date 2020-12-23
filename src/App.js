@@ -17,7 +17,7 @@ function App() {
       firstVal: 0,
       secondVal: 0
     },
-    toggleCat:false
+    toggleCat: false
   })
   const { currentShop } = state
   const handleShopping = (e, id) => {
